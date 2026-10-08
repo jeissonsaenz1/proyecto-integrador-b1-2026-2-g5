@@ -30,6 +30,7 @@ public class MainView extends VerticalLayout {
 
         tabSheet.add("Entidad 1", crearSeccionEntidad1());
         tabSheet.add("Entidad 2", crearSeccionEntidad2());
+        
 
         add(titulo, tabSheet);
     }
@@ -131,4 +132,5 @@ public class MainView extends VerticalLayout {
         layout.add(form, acciones, grid);
         return layout;
     }
+    
 }
