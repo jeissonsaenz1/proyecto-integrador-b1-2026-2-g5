@@ -1,27 +1,38 @@
+
 package com.example.model;
 
 public class FormulaMedicamento {
-    private Long formulaId;
-    private Long medicamentoId;
 
-    public FormulaMedicamento(Long formulaId, Long medicamentoId) {
+    private Integer formulaId;
+    private Integer medicamentoId;
+    public FormulaMedicamento() {
+    }
+    public FormulaMedicamento(Integer formulaId, Integer medicamentoId) {
         this.formulaId = formulaId;
         this.medicamentoId = medicamentoId;
     }
 
-    public Long getFormulaId() {
+    public Integer getFormulaId() {
         return formulaId;
     }
 
-    public void setFormulaId(Long formulaId) {
+    public void setFormulaId(Integer formulaId) {
         this.formulaId = formulaId;
     }
 
-    public Long getMedicamentoId() {
+    public Integer getMedicamentoId() {
         return medicamentoId;
     }
 
-    public void setMedicamentoId(Long medicamentoId) {
+    public void setMedicamentoId(Integer medicamentoId) {
         this.medicamentoId = medicamentoId;
+    }
+
+    @Override
+    public String toString() {
+        return "FormulaMedicamento{" +
+                "formulaId=" + formulaId +
+                ", medicamentoId=" + medicamentoId +
+                '}';
     }
 }
