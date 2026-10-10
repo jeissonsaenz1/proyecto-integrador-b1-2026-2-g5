@@ -2,32 +2,29 @@ package com.example.model;
 
 import java.time.LocalDateTime;
 
-public class DetalleVenta {
+public class Medicamento {
 
     private Integer id;
     private LocalDateTime fechaActualizacion;
     private LocalDateTime fechaCreacion;
-    private Integer cantidad;
-    private Integer subtotal;
-    private Integer medicamentoId;
-    private Integer ventaId;
+    private String nombre;
+    private Integer laboratorioId;
     private Boolean estadoActivo;
 
-    public DetalleVenta() {
+    public Medicamento() {
     }
 
-    public DetalleVenta(Integer id, LocalDateTime fechaActualizacion,
-            LocalDateTime fechaCreacion, Integer cantidad,
-            Integer subtotal, Integer medicamentoId, Integer ventaId,
-            Boolean estadoActivo) {
-
+    public Medicamento(Integer id,
+                       LocalDateTime fechaActualizacion,
+                       LocalDateTime fechaCreacion,
+                       String nombre,
+                       Integer laboratorioId,
+                       Boolean estadoActivo) {
         this.id = id;
         this.fechaActualizacion = fechaActualizacion;
         this.fechaCreacion = fechaCreacion;
-        this.cantidad = cantidad;
-        this.subtotal = subtotal;
-        this.medicamentoId = medicamentoId;
-        this.ventaId = ventaId;
+        this.nombre = nombre;
+        this.laboratorioId = laboratorioId;
         this.estadoActivo = estadoActivo;
     }
 
@@ -55,36 +52,20 @@ public class DetalleVenta {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public Integer getSubtotal() {
-        return subtotal;
+    public Integer getLaboratorioId() {
+        return laboratorioId;
     }
 
-    public void setSubtotal(Integer subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public Integer getMedicamentoId() {
-        return medicamentoId;
-    }
-
-    public void setMedicamentoId(Integer medicamentoId) {
-        this.medicamentoId = medicamentoId;
-    }
-
-    public Integer getVentaId() {
-        return ventaId;
-    }
-
-    public void setVentaId(Integer ventaId) {
-        this.ventaId = ventaId;
+    public void setLaboratorioId(Integer laboratorioId) {
+        this.laboratorioId = laboratorioId;
     }
 
     public Boolean getEstadoActivo() {
@@ -97,14 +78,12 @@ public class DetalleVenta {
 
     @Override
     public String toString() {
-        return "DetalleVenta{" +
+        return "Medicamento{" +
                 "id=" + id +
                 ", fechaActualizacion=" + fechaActualizacion +
                 ", fechaCreacion=" + fechaCreacion +
-                ", cantidad=" + cantidad +
-                ", subtotal=" + subtotal +
-                ", medicamentoId=" + medicamentoId +
-                ", ventaId=" + ventaId +
+                ", nombre='" + nombre + '\'' +
+                ", laboratorioId=" + laboratorioId +
                 ", estadoActivo=" + estadoActivo +
                 '}';
     }

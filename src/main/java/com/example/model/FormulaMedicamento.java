@@ -1,12 +1,13 @@
-
 package com.example.model;
 
 public class FormulaMedicamento {
 
     private Integer formulaId;
     private Integer medicamentoId;
+
     public FormulaMedicamento() {
     }
+
     public FormulaMedicamento(Integer formulaId, Integer medicamentoId) {
         this.formulaId = formulaId;
         this.medicamentoId = medicamentoId;

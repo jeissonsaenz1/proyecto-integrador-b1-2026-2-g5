@@ -14,123 +14,338 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-@PageTitle("Gestión CRUD - 2 Entidades")
+@PageTitle("Proyecto Integrador")
 @Route("")
 public class MainView extends VerticalLayout {
 
     public MainView() {
+
         setSizeFull();
         setPadding(true);
         setSpacing(true);
 
-        H2 titulo = new H2("Gestión de Entidades (CRUD)");
+        H2 titulo = new H2("Proyecto Integrador - Gestión de Farmacia");
 
         TabSheet tabSheet = new TabSheet();
         tabSheet.setWidthFull();
 
-        tabSheet.add("Entidad 1", crearSeccionEntidad1());
-        tabSheet.add("Entidad 2", crearSeccionEntidad2());
-        
+        tabSheet.add("Detalle Venta", crearDetalleVenta());
+        tabSheet.add("Venta", crearVenta());
+        tabSheet.add("Inventario", crearInventario());
+        tabSheet.add("Medicamento", crearMedicamento());
+        tabSheet.add("Laboratorio", crearLaboratorio());
+        tabSheet.add("Fórmula", crearFormula());
+        tabSheet.add("Fórmula Medicamento", crearFormulaMedicamento());
 
         add(titulo, tabSheet);
     }
 
-    // Método privado para gestionar la primera entidad
-    private Component crearSeccionEntidad1() {
+    private Component crearDetalleVenta() {
+
         VerticalLayout layout = new VerticalLayout();
         layout.setPadding(false);
 
-        TextField idField = new TextField("ID");
-        TextField nombreField = new TextField("Nombre");
-        TextField descripcionField = new TextField("Descripción");
+        TextField id = new TextField("ID");
+        TextField fechaActualizacion = new TextField("Fecha actualización");
+        TextField fechaCreacion = new TextField("Fecha creación");
+        TextField cantidad = new TextField("Cantidad");
+        TextField subtotal = new TextField("Subtotal");
+        TextField medicamentoId = new TextField("Medicamento ID");
+        TextField ventaId = new TextField("Venta ID");
+        TextField estadoActivo = new TextField("Estado activo");
 
-        FormLayout form = new FormLayout(idField, nombreField, descripcionField);
-
-        Button btnCrear = new Button("Crear", e -> 
-            Notification.show("Entidad 1 - Crear: " + nombreField.getValue())
+        FormLayout form = new FormLayout(
+                id,
+                fechaActualizacion,
+                fechaCreacion,
+                cantidad,
+                subtotal,
+                medicamentoId,
+                ventaId,
+                estadoActivo
         );
-        btnCrear.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-        Button btnConsultar = new Button("Consultar", e -> 
-            Notification.show("Entidad 1 - Consultar ID: " + idField.getValue())
+        Button guardar = new Button("Guardar", event ->
+                Notification.show("Detalle de venta preparado")
         );
+        guardar.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-        Button btnActualizar = new Button("Actualizar", e -> 
-            Notification.show("Entidad 1 - Actualizar ID: " + idField.getValue())
-        );
-
-        Button btnEliminar = new Button("Eliminar", e -> 
-            Notification.show("Entidad 1 - Eliminar ID: " + idField.getValue())
-        );
-        btnEliminar.addThemeVariants(ButtonVariant.LUMO_ERROR);
-
-        Button btnLimpiar = new Button("Limpiar", e -> {
-            idField.clear();
-            nombreField.clear();
-            descripcionField.clear();
+        Button limpiar = new Button("Limpiar", event -> {
+            id.clear();
+            fechaActualizacion.clear();
+            fechaCreacion.clear();
+            cantidad.clear();
+            subtotal.clear();
+            medicamentoId.clear();
+            ventaId.clear();
+            estadoActivo.clear();
         });
 
-        HorizontalLayout acciones = new HorizontalLayout(
-            btnCrear, btnConsultar, btnActualizar, btnEliminar, btnLimpiar
-        );
-        acciones.getStyle().set("flex-wrap", "wrap");
+        HorizontalLayout acciones = new HorizontalLayout(guardar, limpiar);
 
         Grid<String[]> grid = new Grid<>();
-        grid.addColumn(row -> row[0]).setHeader("ID").setAutoWidth(true);
-        grid.addColumn(row -> row[1]).setHeader("Nombre").setAutoWidth(true);
-        grid.addColumn(row -> row[2]).setHeader("Descripción").setAutoWidth(true);
+        grid.addColumn(row -> row[0]).setHeader("ID");
+        grid.addColumn(row -> row[1]).setHeader("Cantidad");
+        grid.addColumn(row -> row[2]).setHeader("Subtotal");
+        grid.addColumn(row -> row[3]).setHeader("Medicamento ID");
+        grid.addColumn(row -> row[4]).setHeader("Venta ID");
+        grid.addColumn(row -> row[5]).setHeader("Estado activo");
 
         layout.add(form, acciones, grid);
+
         return layout;
     }
 
-    // Método privado para gestionar la segunda entidad
-    private Component crearSeccionEntidad2() {
+    private Component crearVenta() {
+
         VerticalLayout layout = new VerticalLayout();
         layout.setPadding(false);
 
-        TextField idField = new TextField("Código / ID");
-        TextField tituloField = new TextField("Título");
-        TextField categoriaField = new TextField("Categoría");
+        TextField id = new TextField("ID");
+        TextField fechaActualizacion = new TextField("Fecha actualización");
+        TextField fechaCreacion = new TextField("Fecha creación");
+        TextField estado = new TextField("Estado");
+        TextField total = new TextField("Total");
+        TextField estadoActivo = new TextField("Estado activo");
 
-        FormLayout form = new FormLayout(idField, tituloField, categoriaField);
-
-        Button btnCrear = new Button("Crear", e -> 
-            Notification.show("Entidad 2 - Crear: " + tituloField.getValue())
-        );
-        btnCrear.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-
-        Button btnConsultar = new Button("Consultar", e -> 
-            Notification.show("Entidad 2 - Consultar Código: " + idField.getValue())
-        );
-
-        Button btnActualizar = new Button("Actualizar", e -> 
-            Notification.show("Entidad 2 - Actualizar Código: " + idField.getValue())
+        FormLayout form = new FormLayout(
+                id,
+                fechaActualizacion,
+                fechaCreacion,
+                estado,
+                total,
+                estadoActivo
         );
 
-        Button btnEliminar = new Button("Eliminar", e -> 
-            Notification.show("Entidad 2 - Eliminar Código: " + idField.getValue())
+        Button guardar = new Button("Guardar", event ->
+                Notification.show("Venta preparada")
         );
-        btnEliminar.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        guardar.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-        Button btnLimpiar = new Button("Limpiar", e -> {
-            idField.clear();
-            tituloField.clear();
-            categoriaField.clear();
+        Button limpiar = new Button("Limpiar", event -> {
+            id.clear();
+            fechaActualizacion.clear();
+            fechaCreacion.clear();
+            estado.clear();
+            total.clear();
+            estadoActivo.clear();
         });
 
-        HorizontalLayout acciones = new HorizontalLayout(
-            btnCrear, btnConsultar, btnActualizar, btnEliminar, btnLimpiar
-        );
-        acciones.getStyle().set("flex-wrap", "wrap");
-
         Grid<String[]> grid = new Grid<>();
-        grid.addColumn(row -> row[0]).setHeader("Código / ID").setAutoWidth(true);
-        grid.addColumn(row -> row[1]).setHeader("Título").setAutoWidth(true);
-        grid.addColumn(row -> row[2]).setHeader("Categoría").setAutoWidth(true);
+        grid.addColumn(row -> row[0]).setHeader("ID");
+        grid.addColumn(row -> row[1]).setHeader("Estado");
+        grid.addColumn(row -> row[2]).setHeader("Total");
+        grid.addColumn(row -> row[3]).setHeader("Estado activo");
 
-        layout.add(form, acciones, grid);
+        layout.add(form, new HorizontalLayout(guardar, limpiar), grid);
+
         return layout;
     }
-    
+
+    private Component crearInventario() {
+
+        VerticalLayout layout = new VerticalLayout();
+        layout.setPadding(false);
+
+        TextField id = new TextField("ID");
+        TextField fechaActualizacion = new TextField("Fecha actualización");
+        TextField fechaCreacion = new TextField("Fecha creación");
+        TextField fechaVencimiento = new TextField("Fecha vencimiento");
+        TextField lote = new TextField("Lote");
+        TextField stock = new TextField("Stock");
+        TextField medicamentoId = new TextField("Medicamento ID");
+        TextField estadoActivo = new TextField("Estado activo");
+
+        FormLayout form = new FormLayout(
+                id,
+                fechaActualizacion,
+                fechaCreacion,
+                fechaVencimiento,
+                lote,
+                stock,
+                medicamentoId,
+                estadoActivo
+        );
+
+        Button guardar = new Button("Guardar", event ->
+                Notification.show("Inventario preparado")
+        );
+
+        Button limpiar = new Button("Limpiar", event -> {
+            id.clear();
+            fechaActualizacion.clear();
+            fechaCreacion.clear();
+            fechaVencimiento.clear();
+            lote.clear();
+            stock.clear();
+            medicamentoId.clear();
+            estadoActivo.clear();
+        });
+
+        layout.add(
+                form,
+                new HorizontalLayout(guardar, limpiar)
+        );
+
+        return layout;
+    }
+
+    private Component crearMedicamento() {
+
+        VerticalLayout layout = new VerticalLayout();
+        layout.setPadding(false);
+
+        TextField id = new TextField("ID");
+        TextField fechaActualizacion = new TextField("Fecha actualización");
+        TextField fechaCreacion = new TextField("Fecha creación");
+        TextField nombre = new TextField("Nombre");
+        TextField laboratorioId = new TextField("Laboratorio ID");
+        TextField estadoActivo = new TextField("Estado activo");
+
+        FormLayout form = new FormLayout(
+                id,
+                fechaActualizacion,
+                fechaCreacion,
+                nombre,
+                laboratorioId,
+                estadoActivo
+        );
+
+        Button guardar = new Button("Guardar", event ->
+                Notification.show("Medicamento preparado")
+        );
+
+        Button limpiar = new Button("Limpiar", event -> {
+            id.clear();
+            fechaActualizacion.clear();
+            fechaCreacion.clear();
+            nombre.clear();
+            laboratorioId.clear();
+            estadoActivo.clear();
+        });
+
+        layout.add(
+                form,
+                new HorizontalLayout(guardar, limpiar)
+        );
+
+        return layout;
+    }
+
+    private Component crearLaboratorio() {
+
+        VerticalLayout layout = new VerticalLayout();
+        layout.setPadding(false);
+
+        TextField id = new TextField("ID");
+        TextField fechaActualizacion = new TextField("Fecha actualización");
+        TextField fechaCreacion = new TextField("Fecha creación");
+        TextField calle = new TextField("Calle");
+        TextField ciudad = new TextField("Ciudad");
+        TextField pais = new TextField("País");
+        TextField nombre = new TextField("Nombre");
+        TextField estadoActivo = new TextField("Estado activo");
+
+        FormLayout form = new FormLayout(
+                id,
+                fechaActualizacion,
+                fechaCreacion,
+                calle,
+                ciudad,
+                pais,
+                nombre,
+                estadoActivo
+        );
+
+        Button guardar = new Button("Guardar", event ->
+                Notification.show("Laboratorio preparado")
+        );
+
+        Button limpiar = new Button("Limpiar", event -> {
+            id.clear();
+            fechaActualizacion.clear();
+            fechaCreacion.clear();
+            calle.clear();
+            ciudad.clear();
+            pais.clear();
+            nombre.clear();
+            estadoActivo.clear();
+        });
+
+        layout.add(
+                form,
+                new HorizontalLayout(guardar, limpiar)
+        );
+
+        return layout;
+    }
+
+    private Component crearFormula() {
+
+        VerticalLayout layout = new VerticalLayout();
+        layout.setPadding(false);
+
+        TextField id = new TextField("ID");
+        TextField fechaActualizacion = new TextField("Fecha actualización");
+        TextField fechaCreacion = new TextField("Fecha creación");
+        TextField nombre = new TextField("Nombre");
+        TextField estadoActivo = new TextField("Estado activo");
+
+        FormLayout form = new FormLayout(
+                id,
+                fechaActualizacion,
+                fechaCreacion,
+                nombre,
+                estadoActivo
+        );
+
+        Button guardar = new Button("Guardar", event ->
+                Notification.show("Fórmula preparada")
+        );
+
+        Button limpiar = new Button("Limpiar", event -> {
+            id.clear();
+            fechaActualizacion.clear();
+            fechaCreacion.clear();
+            nombre.clear();
+            estadoActivo.clear();
+        });
+
+        layout.add(
+                form,
+                new HorizontalLayout(guardar, limpiar)
+        );
+
+        return layout;
+    }
+
+    private Component crearFormulaMedicamento() {
+
+        VerticalLayout layout = new VerticalLayout();
+        layout.setPadding(false);
+
+        TextField formulaId = new TextField("Fórmula ID");
+        TextField medicamentoId = new TextField("Medicamento ID");
+
+        FormLayout form = new FormLayout(
+                formulaId,
+                medicamentoId
+        );
+
+        Button guardar = new Button("Guardar", event ->
+                Notification.show("Relación fórmula-medicamento preparada")
+        );
+
+        Button limpiar = new Button("Limpiar", event -> {
+            formulaId.clear();
+            medicamentoId.clear();
+        });
+
+        layout.add(
+                form,
+                new HorizontalLayout(guardar, limpiar)
+        );
+
+        return layout;
+    }
 }

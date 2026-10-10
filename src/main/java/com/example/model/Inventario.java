@@ -2,32 +2,35 @@ package com.example.model;
 
 import java.time.LocalDateTime;
 
-public class DetalleVenta {
+public class Inventario {
 
     private Integer id;
     private LocalDateTime fechaActualizacion;
     private LocalDateTime fechaCreacion;
-    private Integer cantidad;
-    private Integer subtotal;
+    private LocalDateTime fechaVencimiento;
+    private String lote;
+    private Integer stock;
     private Integer medicamentoId;
-    private Integer ventaId;
     private Boolean estadoActivo;
 
-    public DetalleVenta() {
+    public Inventario() {
     }
 
-    public DetalleVenta(Integer id, LocalDateTime fechaActualizacion,
-            LocalDateTime fechaCreacion, Integer cantidad,
-            Integer subtotal, Integer medicamentoId, Integer ventaId,
-            Boolean estadoActivo) {
-
+    public Inventario(Integer id,
+                      LocalDateTime fechaActualizacion,
+                      LocalDateTime fechaCreacion,
+                      LocalDateTime fechaVencimiento,
+                      String lote,
+                      Integer stock,
+                      Integer medicamentoId,
+                      Boolean estadoActivo) {
         this.id = id;
         this.fechaActualizacion = fechaActualizacion;
         this.fechaCreacion = fechaCreacion;
-        this.cantidad = cantidad;
-        this.subtotal = subtotal;
+        this.fechaVencimiento = fechaVencimiento;
+        this.lote = lote;
+        this.stock = stock;
         this.medicamentoId = medicamentoId;
-        this.ventaId = ventaId;
         this.estadoActivo = estadoActivo;
     }
 
@@ -55,20 +58,28 @@ public class DetalleVenta {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
+    public LocalDateTime getFechaVencimiento() {
+        return fechaVencimiento;
     }
 
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public void setFechaVencimiento(LocalDateTime fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
     }
 
-    public Integer getSubtotal() {
-        return subtotal;
+    public String getLote() {
+        return lote;
     }
 
-    public void setSubtotal(Integer subtotal) {
-        this.subtotal = subtotal;
+    public void setLote(String lote) {
+        this.lote = lote;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public Integer getMedicamentoId() {
@@ -77,14 +88,6 @@ public class DetalleVenta {
 
     public void setMedicamentoId(Integer medicamentoId) {
         this.medicamentoId = medicamentoId;
-    }
-
-    public Integer getVentaId() {
-        return ventaId;
-    }
-
-    public void setVentaId(Integer ventaId) {
-        this.ventaId = ventaId;
     }
 
     public Boolean getEstadoActivo() {
@@ -97,14 +100,14 @@ public class DetalleVenta {
 
     @Override
     public String toString() {
-        return "DetalleVenta{" +
+        return "Inventario{" +
                 "id=" + id +
                 ", fechaActualizacion=" + fechaActualizacion +
                 ", fechaCreacion=" + fechaCreacion +
-                ", cantidad=" + cantidad +
-                ", subtotal=" + subtotal +
+                ", fechaVencimiento=" + fechaVencimiento +
+                ", lote='" + lote + '\'' +
+                ", stock=" + stock +
                 ", medicamentoId=" + medicamentoId +
-                ", ventaId=" + ventaId +
                 ", estadoActivo=" + estadoActivo +
                 '}';
     }

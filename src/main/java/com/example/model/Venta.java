@@ -3,18 +3,21 @@ package com.example.model;
 import java.time.LocalDateTime;
 
 public class Venta {
-    private Long id; // para que sea autogenerado por la BD
+
+    private Integer id;
     private LocalDateTime fechaActualizacion;
     private LocalDateTime fechaCreacion;
-    private String estado; // 'pendiente', 'pagada', 'anulada', etc.
-    private double total;
-    private boolean estadoActivo; // true = activa, false = eliminada
+    private String estado;
+    private Integer total;
+    private Boolean estadoActivo;
 
-    
-    // Constructor completo
-    
-    public Venta(Long id, LocalDateTime fechaActualizacion, LocalDateTime fechaCreacion,
-            String estado, double total, boolean estadoActivo) {
+    public Venta() {
+    }
+
+    public Venta(Integer id, LocalDateTime fechaActualizacion,
+            LocalDateTime fechaCreacion, String estado,
+            Integer total, Boolean estadoActivo) {
+
         this.id = id;
         this.fechaActualizacion = fechaActualizacion;
         this.fechaCreacion = fechaCreacion;
@@ -23,32 +26,11 @@ public class Venta {
         this.estadoActivo = estadoActivo;
     }
 
-    
-    // Constructor sin ID
-    // (para insertar nuevas ventas sin ID)
-    
-    public Venta(LocalDateTime fechaActualizacion, LocalDateTime fechaCreacion,
-            String estado, double total, boolean estadoActivo) {
-        this(null, fechaActualizacion, fechaCreacion, estado, total, estadoActivo);
-    }
-
-    
-    // Constructor vacio
-    
-    public Venta() {
-        this.fechaActualizacion = LocalDateTime.now();
-        this.fechaCreacion = LocalDateTime.now();
-        this.estadoActivo = true;
-    }
-
-    
-    // Getters y setters
-    
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -76,24 +58,31 @@ public class Venta {
         this.estado = estado;
     }
 
-    public double getTotal() {
+    public Integer getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
 
-    public boolean isEstadoActivo() {
+    public Boolean getEstadoActivo() {
         return estadoActivo;
     }
 
-    public void setEstadoActivo(boolean estadoActivo) {
+    public void setEstadoActivo(Boolean estadoActivo) {
         this.estadoActivo = estadoActivo;
     }
 
     @Override
     public String toString() {
-        return "Venta [id=" + id + ", estado=" + estado + ", total=" + total + "]";
+        return "Venta{" +
+                "id=" + id +
+                ", fechaActualizacion=" + fechaActualizacion +
+                ", fechaCreacion=" + fechaCreacion +
+                ", estado='" + estado + '\'' +
+                ", total=" + total +
+                ", estadoActivo=" + estadoActivo +
+                '}';
     }
 }
